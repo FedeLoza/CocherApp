@@ -114,12 +114,10 @@ body {
 
 
 .container-main-login{
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.595);
     grid-area: a;
-    padding-left: 20px;
-    padding-right: 0px;
-    margin-bottom: 20%;
-    justify-items:center;
+    border-radius: 10px;
+    padding: 5px;
     
 }
 
