@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="icon" href="img/Recurso-6.ico" type="image/x-icon">
+    <title>CocherApp</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
+</head>
+
+<body>
+    <header class="nav-header">
+        <img class="logo" src="img/cocherappmdpi.png" alt="logo">
+        <h1>CocherApp
+        </h1>
+    <div class="user-session">
+        <p id="user"></p>
+        <button id="logout">Cerrar sesión</button>
+    </div>
+    </header>
+
+    <div class="container-principal">
+
+        <div class="container-main">
+            <button id="btnForm" onclick="mostrarFormulario()">
+                <img src="img/cocheraagregarmdpi.png" alt="loguito">
+                <p>Agregar Vehículo</p>
+            </button>
+            <button id="btnHidForm" onclick="esconderFormulario()" style="display: none;">Cerrar</button>
+
+
+            
+
+            <form id="nuevoCoche" style="display: none;">
+                <h3>Datos del Vehículo</h3>
+                <!-- menu desplegable -->
+                <select name="tipo" id="desplegable-tipo">
+                    <option value="sedan">Sedán</option>
+                    <option value="suv">SUV</option>
+                    <option value="pickup">Pickup</option>
+                    <option value="hatchback">Hatchback</option>
+                    <option value="moto">Moto</option>
+                    <option value="bici">Bicicleta</option>
+                    <option value="monopatin">Monopatín</option>
+                </select>
+
+                <input type="text" placeholder="Marca" id="marca">
+                <input type="text" placeholder="Modelo" id="modelo" required>
+                <input type="text" placeholder="Patente" minlength="6" maxlength="7" id="patente">
+                <h3>Datos del dueño</h3>
+                <input type="text" placeholder="Nombre" id="nombre" required>
+                <input type="text" placeholder="Apellido" id="apellido" required>
+                <input type="number" placeholder="Teléfono" id="tel" required>
+
+                <button id="enviar" type="submit" onclick="guardaCoche()">Guardar</button>
+            </form>
+
+            <div id="listaCoches"></div>
+        </div>
+    </div>
+
+    <footer>Iván Loza - IFTS N°4</footer>
+
+</body>
+<script>
+
+    let misVehiculos = JSON.parse(localStorage.getItem("vehiculos")) || [];
+
+
+    function mostrarFormulario() {
+        document.getElementById('nuevoCoche').style.display = 'grid';
+        document.getElementById('btnForm').style.display = 'none';
+        document.getElementById('btnHidForm').style.display = 'flex';
+
+    }
+
+    function esconderFormulario() {
+        document.getElementById('nuevoCoche').style.display = 'none';
+        document.getElementById('btnForm').style.display = 'flex';
+        document.getElementById('btnHidForm').style.display = 'none';
+    }
+
+    function guardaCoche() {
+
+        let vehiculo = {
+            tipo: document.getElementById('desplegable-tipo').value.toUpperCase(),
+            marca: document.getElementById('marca').value,
+            modelo: document.getElementById('modelo').value,
+            patente: document.getElementById('patente').value.toUpperCase(),
+            nombre: document.getElementById('nombre').value,
+            apellido: document.getElementById('apellido').value,
+            tel: document.getElementById('tel').value
+        }
+
+        misVehiculos.push(vehiculo); 
+
+        localStorage.setItem("vehiculos", JSON.stringify(misVehiculos)); 
+
+        console.log(misVehiculos)
+        mostrarCoches()
+    }
+
+    function mostrarCoches() {
+        const contenedor = document.getElementById("listaCoches");
+        contenedor.innerHTML = ""; // Limpia antes de mostrar
+
+        for (let i = 0; i < misVehiculos.length; i++) {
+            let coche = misVehiculos[i];
+
+            let div = document.createElement("div");
+            div.className = "tarjeta"
+            div.innerHTML = `
+            <h3>Vehículo ${i + 1}</h3>
+            <p><strong>Tipo:</strong> ${coche.tipo}</p>
+            <p><strong>Nombre:</strong> ${coche.nombre} ${coche.apellido}</p>
+            <p><strong>Marca:</strong> ${coche.marca}</p>
+            <p><strong>Modelo:</strong> ${coche.modelo}</p>
+            <p><strong>Patente:</strong> ${coche.patente}</p>
+            <p><strong>Tel:</strong> ${coche.tel}</p>
+            <button onclick="eliminarCoche(${i})">Eliminar</button> 
+        `;
+
+
+
+            //se le pasa el índice a la función onclick 
+            contenedor.appendChild(div);
+        }
+
+        if (localStorage.getItem("vehiculos") == "[]"){
+            let div = document.createElement("div");
+            div.className = "tarjetaVacio"
+            div.innerHTML = `
+            <img src="img/cocheravaciamdpi.png" alt="vacia">
+            <p>No hay vehículos en su cochera, </p>
+            <p>puede agregar uno nuevo desde el botón "Agregar Vehículo"</p>`
+            ;
+            contenedor.appendChild(div)
+        }
+
+    }
+
+
+    function eliminarCoche(indice) {
+        if (confirm("¿Estás seguro de que quieres eliminar este vehículo?")) {
+            misVehiculos.splice(indice, 1);
+            localStorage.setItem("vehiculos", JSON.stringify(misVehiculos));
+            mostrarCoches();
+        }
+    }
+
+    function mostrarUser() {
+        let userVal = localStorage.getItem("user");
+        let parsea = JSON.parse(userVal);
+        let user = document.getElementById("user");
+        user.innerHTML = `Bienvenido, ${parsea.user}`;
+        console.log(parsea);
+    }
+
+    // Muestra los coches al iniciar el index
+    window.onload = function () {
+        mostrarCoches();
+        mostrarUser();
+    };
+
+    // Botón para cerrar sesión
+    document.getElementById('logout').onclick = function () {
+        localStorage.setItem('loggedIn', 'false');
+        window.location.href = 'index.html';
+    };
+
+</script>
+
+</html>
