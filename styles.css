@@ -5,14 +5,32 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
+a{
+    text-decoration: none;
+}
+a:visited {
+  color: inherit;
+}
+
 body {
     background-image: url(img/1x/s.png);
 }
+
 
 .logo {
     width: 50px;
     margin-right: 5px;
 }
+
+.nav-link{
+    text-decoration: none;
+    margin-left: 14px;
+      border-radius: 10px;
+  border-color: rgba(0, 225, 255, 0.444);
+  border-style: solid;
+}
+
+
 
 }
 
@@ -228,5 +246,8 @@ footer {
     background-color: #333;
     color: white;
     padding: 10px;
-    text-align: center;
+
+}
+footer li{
+    text-size-adjust: 5pt;
 }

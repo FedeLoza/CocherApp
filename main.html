@@ -16,10 +16,16 @@
 
 <body>
     <header class="nav-header">
-        <img class="logo" src="img/cocherappmdpi.png" alt="logo">
-        <h1>CocherApp
-        </h1>
-    <div class="user-session">
+        <a href="main.html">
+            <img href="main.html" class="logo" src="img/cocherappmdpi.png" alt="logo">
+        </a>
+        <a href="main.html">
+            <h1>CocherApp
+            </h1>
+        </a>
+        <button id="explicativo" class="nav-link">¿Cómo se usa?</button>
+        <button id="contacto" class="nav-link">Contacto</button>
+        <div class="user-session">
         <p id="user"></p>
         <button id="logout">Cerrar sesión</button>
     </div>
@@ -65,7 +71,13 @@
         </div>
     </div>
 
-    <footer>Iván Loza - IFTS N°4</footer>
+    <footer>
+        <ul>
+            <li><a href="main.html">Inicio</a></li>
+            <li>¿Cómo se usa?</li>
+            <li>Contacto</li>
+        </ul>
+    </footer>
 
 </body>
 <script>
@@ -87,6 +99,7 @@
     }
 
     function guardaCoche() {
+
 
         let vehiculo = {
             tipo: document.getElementById('desplegable-tipo').value.toUpperCase(),
@@ -172,6 +185,16 @@
     document.getElementById('logout').onclick = function () {
         localStorage.setItem('loggedIn', 'false');
         window.location.href = 'index.html';
+    };
+
+
+    // botón para explicativo
+    document.getElementById('explicativo').onclick = function () {
+        window.location.href = 'explicativo.html';
+    };
+    // botón para contacto
+    document.getElementById('contacto').onclick = function () {
+        window.location.href = 'contacto.html';
     };
 
 </script>
