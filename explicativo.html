@@ -74,10 +74,20 @@
     <footer>
         <ul>
             <li><a href="main.html">Inicio</a></li>
-            <li>¿Cómo se usa?</li>
-            <li>Contacto</li>
+            <li><a href="explicativo.html">¿Cómo se usa?</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
         </ul>
     </footer>
 
 </body>
+<script>
+        // botón para explicativo
+    document.getElementById('explicativo').onclick = function () {
+        window.location.href = 'explicativo.html';
+    };
+    // botón para contacto
+    document.getElementById('contacto').onclick = function () {
+        window.location.href = 'contacto.html';
+    };
+</script>
 </html>

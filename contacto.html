@@ -31,53 +31,39 @@
     </div>
     </header>
 
-    <div class="container-principal">
+    <div class="container-principal-contacto">
 
-        <div class="container-main">
-            <button id="btnForm" onclick="mostrarFormulario()">
-                <img src="img/cocheraagregarmdpi.png" alt="loguito">
-                <p>Agregar Vehículo</p>
-            </button>
-            <button id="btnHidForm" onclick="esconderFormulario()" style="display: none;">Cerrar</button>
-
-
-            
-
-            <form id="nuevoCoche" style="display: none;">
-                <h3>Datos del Vehículo</h3>
-                <!-- menu desplegable -->
-                <select name="tipo" id="desplegable-tipo">
-                    <option value="sedan">Sedán</option>
-                    <option value="suv">SUV</option>
-                    <option value="pickup">Pickup</option>
-                    <option value="hatchback">Hatchback</option>
-                    <option value="moto">Moto</option>
-                    <option value="bici">Bicicleta</option>
-                    <option value="monopatin">Monopatín</option>
-                </select>
-
-                <input type="text" placeholder="Marca" id="marca">
-                <input type="text" placeholder="Modelo" id="modelo" required>
-                <input type="text" placeholder="Patente" minlength="6" maxlength="7" id="patente">
-                <h3>Datos del dueño</h3>
-                <input type="text" placeholder="Nombre" id="nombre" required>
-                <input type="text" placeholder="Apellido" id="apellido" required>
-                <input type="number" placeholder="Teléfono" id="tel" required>
+        <div class="container-contacto">
+        
+           <form id="contacto-form" >
+                <h3>Formulario de Contacto</h3>
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Asunto" id="asunto">
+                <textarea name="comentario" rows="4" cols="50" placeholder="Mensaje"></textarea>
 
                 <button id="enviar" type="submit" onclick="guardaCoche()">Guardar</button>
             </form>
 
-            <div id="listaCoches"></div>
         </div>
     </div>
 
     <footer>
         <ul>
             <li><a href="main.html">Inicio</a></li>
-            <li>¿Cómo se usa?</li>
-            <li>Contacto</li>
+            <li><a href="explicativo.html">¿Cómo se usa?</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
         </ul>
     </footer>
 
 </body>
+<script>
+        // botón para explicativo
+    document.getElementById('explicativo').onclick = function () {
+        window.location.href = 'explicativo.html';
+    };
+    // botón para contacto
+    document.getElementById('contacto').onclick = function () {
+        window.location.href = 'contacto.html';
+    };
+</script>
 </html>
