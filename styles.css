@@ -303,6 +303,9 @@ body {
     /* padding-left: 300px; */
     grid-area: a;
 }
+.container-main-expli img{
+    width: 300px;
+}
 
 
 .tarjetaVacio {
