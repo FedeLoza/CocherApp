@@ -303,9 +303,7 @@ body {
     /* padding-left: 300px; */
     grid-area: a;
 }
-.container-main-expli img{
-    width: 300px;
-}
+
 
 
 .tarjetaVacio {
@@ -373,5 +371,9 @@ footer li{
 
     #hamburguer{
         display: flex;
+    }
+
+    .container-main-expli img{
+        width: 200px;
     }
 }
