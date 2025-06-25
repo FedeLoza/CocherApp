@@ -326,7 +326,13 @@ body {
     width: 100%;
     cursor: pointer;
     text-align: center;
+    border-radius: 10px;
 }
+
+#menu-ham .btnlogout {
+    background-color: rgba(203, 8, 8, 0.933);
+}
+
 
 .tarjetaVacio {
     display:grid;
