@@ -30,12 +30,20 @@
         <p id="user"></p>
         <button id="logout">Cerrar sesión</button>
 
-        <button class="hamburguer hidden" id="hamburguer">
+        <button class="hamburguer hidden" id="hamburguer" onclick="abrirMenu()">
             <img src="img/hamburguer.svg" alt="Menú" width="20" height="20">
         </button>
 
     </div>
     </header>
+
+        <div class="menu-ham hidden" id="menu-ham">
+            <ul>
+                <li><a href="main.html">Inicio</a></li>
+                <li><a href="explicativo.html">¿Cómo se usa?</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
 
     <div class="container-principal">
 
@@ -203,6 +211,15 @@
     document.getElementById('contacto').onclick = function () {
         window.location.href = 'contacto.html';
     };
+    function abrirMenu() {
+  const menu = document.getElementById("menu-ham");
+  if (menu.style.display === 'none' || menu.style.display === '') {
+    menu.style.display = 'grid';
+  } else {
+    menu.style.display = 'none';
+  }
+}
+
 
 </script>
 
