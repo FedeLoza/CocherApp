@@ -40,6 +40,7 @@ body {
 .container-principal{
     background-color: rgba(255, 255, 255, 0);
     display: grid;
+    margin-top: 50px;
     grid-template-rows: repeat(7, 1fr);
     /* grid-template-columns: 20%, 20%, 20%, 20%, 20%; */
     grid-template-areas:    "l l a a a i i"
@@ -133,6 +134,13 @@ body {
     grid-area: a;
     border-radius: 10px;
     padding-bottom: 5px;
+}
+
+.login-container p{
+    margin-top: 10px;
+}
+.register-container p{
+    margin-top: 10px;
 }
 .register-container{
     background-color: #39c8cd;
